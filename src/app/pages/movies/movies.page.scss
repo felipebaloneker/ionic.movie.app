@@ -1,0 +1,40 @@
+.header {
+  padding: 0rem 2rem;
+}
+
+ion-searchbar {
+  --border-radius: 1rem;
+  --background: var(--search-bg);
+}
+
+.card_list {
+  padding: 0rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+  .card_thumbnail {
+    width: 5.125rem;
+    height: 7.6rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .title {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .mark {
+    --background: var(--light);
+  }
+
+  .btn-info {
+    --background: var(--btn-color);
+  }
+}

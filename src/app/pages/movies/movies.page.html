@@ -1,21 +1,65 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Movies</ion-title>
+<ion-header class="header" [translucent]="true">
+  <ion-toolbar mode="md">
+    <ion-buttons class="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="menu-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar class="search_container" mode="md">
+    <ion-searchbar class="searchbar" color="dark"> </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item button *ngFor="let item of movies" [routerLink]="[item.id]">
-      <ion-avatar slot="start">
+  <!-- Render cards-->
+  <ion-list class="card_list">
+    <ion-item
+      class="card"
+      button
+      *ngFor="let item of movies"
+      [routerLink]="[item.id]"
+    >
+      <div class="card_thumbnail" slot="start">
         <img [src]="imageBaseUrl + '/w92' + item.poster_path" />
-      </ion-avatar>
-      <ion-label>
-        {{item.title}}
-        <p>{{item.release_date | date:'y'}}</p>
+      </div>
+      <ion-label class="text-container">
+        <!-- Title -->
+        <div class="flex">
+          <ion-label class="title">{{item.title}}</ion-label>
+          <ion-buttons slot="end">
+            <ion-button>
+              <ion-icon class="mark" name="bookmark"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+
+        <!-- Average-->
+        <div class="flex">
+          <p class="date" slot="end">{{item.release_date | date:'y'}}</p>
+          <ion-label>
+            <ion-buttons>
+              <ion-button>
+                <ion-icon slot="icon-only" name="star-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <span class="average">{{item.vote_average}}</span>
+          </ion-label>
+        </div>
+
+        <ion-buttons>
+          <ion-button class="btn-info">More Info</ion-button>
+        </ion-buttons>
       </ion-label>
     </ion-item>
   </ion-list>
+  <!-- Show more-->
   <ion-infinite-scroll (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content
       loadingSpinneer="bubbles"
